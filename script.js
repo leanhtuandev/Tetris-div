@@ -225,22 +225,22 @@ function gameOver() {
 // Speed
 
 function speed() {
-    if (score >= 100) {
+    if (score == 100) {
         clearInterval(time);
         time = setInterval(moveDown, 800);
         console.log('800mls')
     }
-    if (score >= 200) {
+    if (score == 200) {
         clearInterval(time);
         time = setInterval(moveDown, 600);
         console.log('600mls')
     }
-    if (score >= 400) {
+    if (score == 400) {
         clearInterval(time);
         time = setInterval(moveDown, 400);
         console.log('400mls')
     }
-    if (score >= 800) {
+    if (score == 800) {
         clearInterval(time);
         time = setInterval(moveDown, 200);
         console.log('200mls')
