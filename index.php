@@ -1,3 +1,3 @@
 <?php
-    include_once('/Tetris not canvas/index.html');
+    include_once('index.html');
 ?>
