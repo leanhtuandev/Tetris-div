@@ -82,6 +82,8 @@ function undraw() {
 // setInterval
 var time = setInterval(moveDown, 1000);
 
+
+// event listener
 function control(evt) {
     if (evt.keyCode === 37) {
         moveLeft();
@@ -98,11 +100,13 @@ function control(evt) {
 }
 
 document.addEventListener('keydown', control);
+
+
 // function move down
 
 function moveDown() {
     undraw();
-    currentPosition += WIDTH; // điểm tiếp theo bằng điểm hiện tại + game width
+    currentPosition += WIDTH;
     draw();
     freeze();
 }
