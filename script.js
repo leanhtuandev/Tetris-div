@@ -5,7 +5,7 @@ const WIDTH = 10;
 const BTN2 = document.querySelector('#play-button');
 const COLOR = ['#FF0000', '#FF9700', '#FFFF00', '#6CFF00', '#00C5FF', '#FF00AE'];
 
-// khởi tạo các brick
+// arr brick
 const BRICK_L = [
     [1, WIDTH + 1, WIDTH * 2 + 1, 2],
     [WIDTH, WIDTH + 1, WIDTH + 2, WIDTH * 2 + 2],
@@ -44,7 +44,7 @@ const THE_BRICK = [BRICK_L, BRICK_Z, BRICK_T, BRICK_O, BRICK_I];
 let currentPosition = 4;
 let currentRotation = 0;
 
-//  random mảng chứa brick ngẫu nhiên
+//  random arr brick
 let random = Math.floor(Math.random() * THE_BRICK.length);
 let current = THE_BRICK[random][currentRotation];
 
@@ -53,10 +53,10 @@ let randomColor = Math.floor(Math.random() * COLOR.length);
 let color = COLOR[randomColor];
 console.log(color);
 
-// lấy 1 mảng các ô vuông
+// get div
 let boxs = Array.from(document.querySelectorAll('.grid div'));
 
-// vẽ brick
+// draw
 
 
 function draw() {
@@ -70,7 +70,7 @@ function draw() {
 }
 draw();
 
-// xoa brick
+// undraw
 
 function undraw() {
     current.forEach(index => {
@@ -111,45 +111,43 @@ function moveDown() {
 
 function freeze() {
     if (current.some(index => boxs[currentPosition + index + WIDTH].classList.contains('last'))) {
-        // vẽ lại brick khi ở cuối
+        // draw tiles at the end position
         current.forEach(index => boxs[currentPosition + index].classList.add('last'));
+
+        //
         random = Math.floor(Math.random() * THE_BRICK.length);
         current = THE_BRICK[random][currentRotation];
         currentPosition = 4;
         randomColor = Math.floor(Math.random() * COLOR.length);
         color = COLOR[randomColor];
-        console.log(color);
         draw();
-
     }
     addScore();
     speed();
     gameOver();
 }
 
+// move left
 function moveLeft() {
     undraw();
-    // kiểm tra brick có ở vị trí đầu tiên trong col hay không
-
+    // check brick on the first col
     let isLeft = current.some(index => (currentPosition + index) % WIDTH === 0);
 
     if (!isLeft) currentPosition -= 1;
-    // kiem tra ben trai co brick k
+    // check brick on the left
     if (current.some(index => boxs[currentPosition + index].classList.contains('last'))) {
         currentPosition += 1;
     }
     draw();
 
 }
-
+// move right
 function moveRight() {
     undraw();
-    // kiểm tra brick có ở cuoi cung trong col hay không
-
+    // check brick on the last col
     let isRight = current.some(index => (currentPosition + index) % WIDTH === WIDTH - 1);
-
     if (!isRight) currentPosition += 1;
-    // kiem tra ben phai co brick k
+    // check brick on the left
     if (current.some(index => boxs[currentPosition + index].classList.contains('last'))) {
         currentPosition -= 1;
     }
@@ -185,7 +183,7 @@ BTN2.addEventListener('click', () => {
 
 // add score 
 var score = 0;
-//loi
+// add score and remove row
 function addScore() {
     for (let i = 0; i < 199; i += WIDTH) {
         const row = [i, i + 1, i + 2, i + 3, i + 4, i + 5, i + 6, i + 7, i + 8, i + 9];
