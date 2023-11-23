@@ -216,7 +216,7 @@ function addScore() {
 
 function gameOver() {
     if (current.some(index => boxs[currentPosition + index].classList.contains('last'))) {
-        SCORE.innerHTML = 'NGU';
+        SCORE.innerHTML = 'GÀ';
         console.log('game over')
         clearInterval(time);
     }
